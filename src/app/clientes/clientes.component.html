@@ -1,0 +1,36 @@
+<div class="card border-primary my-5 mx-5">
+    <div class="card-header">Clientes</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Listado de Clientes</h5>
+        <div class="my-2 text-left">
+            <button class="btn btn-rounded btn-primary" [routerLink]="['/clientes/form']">Crear cliente</button>
+        </div>
+        <div *ngIf="clientes?.length == 0" class="alert alert-info">
+            No hay registros en la base de datos!
+        </div>
+        <table class="table table-bordered table-striped" *ngIf="clientes?.length>0">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Identificación</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of clientes">
+                    <td>{{cliente.id}}</td>
+                    <td>{{cliente.nombre}}</td>
+                    <td>{{cliente.apellido}}</td>
+                    <td>{{cliente.identificacion}}</td>
+                    <td>{{cliente.estado}}</td>
+                    <td>
+                        <button [routerLink]="['/clientes/form',cliente.id]" class="btn btn-primary" name="editar">Editar</button>
+                        <button name="eliminar" (click)='delete(cliente)' class="btn btn-danger mx-2">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

@@ -1,0 +1,34 @@
+<div class="card border-primary my-5">
+    <div class="card-header">Técnicos</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Listado de técnicos</h5>
+        <div class="my-2 text-left">
+            <button class="btn btn-rounded btn-primary" [routerLink]="['/tecnicos/form']">Crear técnico</button>
+        </div>
+        <div *ngIf="tecnicos?.length == 0" class="alert alert-info">
+            No hay registros en la base de datos!
+        </div>
+        <table class="table table-bordered table-striped" *ngIf="tecnicos?.length>0">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Identificación</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tecnico of tecnicos">
+                    <td>{{tecnico.id}}</td>
+                    <td>{{tecnico.nombre}}</td>
+                    <td>{{tecnico.apellido}}</td>
+                    <td>{{tecnico.identificacion}}</td>
+                    <td>{{tecnico.estado}}</td>
+                    <td> <button [routerLink]="['/tecnicos/form',tecnico.id]" class="btn btn-primary" name="editar">Editar</button>
+                        <button (click)='delete(tecnico)' class="btn btn-danger mx-2" name="eliminar">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
